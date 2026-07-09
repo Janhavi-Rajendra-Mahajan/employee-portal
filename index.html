@@ -1,0 +1,245 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Company Employee Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0d6efd, #5b9df9);
+            min-height: 100vh;
+        }
+
+        header {
+            background: #003366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 34px;
+        }
+
+        nav {
+            background: white;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #003366;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #0d6efd;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 12px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero h2 {
+            color: #003366;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            line-height: 30px;
+        }
+
+        .version {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: green;
+            color: white;
+            font-size: 22px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .services {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.2);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card h3 {
+            color: #003366;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 25px;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 12px 25px;
+            border: none;
+            background: #0d6efd;
+            color: white;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #003366;
+        }
+
+        #date {
+            margin-top: 25px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        footer {
+            margin-top: 60px;
+            background: #003366;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🏢 Company Employee Portal</h1>
+
+    <p>Internal Employee Management Website</p>
+
+</header>
+
+<nav>
+
+    <a href="#">Home</a>
+    <a href="#">Employees</a>
+    <a href="#">Departments</a>
+    <a href="#">Contact</a>
+
+</nav>
+
+<div class="container">
+
+    <div class="hero">
+
+        <h2>Welcome to the Employee Portal</h2>
+
+        <p>
+            This website demonstrates an automated CI/CD deployment using
+            <strong>GitHub → AWS CodePipeline → AWS CodeBuild → EC2 (Nginx)</strong>.
+            Every time code is pushed to GitHub, the pipeline validates the HTML,
+            deploys the latest version, and updates the website automatically.
+        </p>
+
+        <div class="version">
+            Version 1.0
+        </div>
+
+        <br>
+
+        <button onclick="showMessage()">Check Deployment Status</button>
+
+        <div id="date"></div>
+
+    </div>
+
+    <div class="services">
+
+        <div class="card">
+            <h3>👨‍💼 Employee Records</h3>
+            <p>Manage employee profiles, departments, and contact information.</p>
+        </div>
+
+        <div class="card">
+            <h3>📢 Company News</h3>
+            <p>Stay updated with the latest company announcements and notices.</p>
+        </div>
+
+        <div class="card">
+            <h3>📅 Attendance</h3>
+            <p>View attendance details and working schedules.</p>
+        </div>
+
+        <div class="card">
+            <h3>💼 HR Services</h3>
+            <p>Access HR forms, leave requests, and employee support.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+
+    <p>© 2026 Company Employee Portal | AWS CI/CD Demo Project</p>
+
+</footer>
+
+<script>
+
+function showMessage(){
+
+    const now = new Date();
+
+    document.getElementById("date").innerHTML =
+        "<h3 style='color:green;margin-top:20px;'>✅ Latest Website Successfully Deployed!</h3>" +
+        "<br>Deployment Time: <b>" + now.toLocaleString() + "</b>";
+
+}
+
+</script>
+
+</body>
+</html>
+```
