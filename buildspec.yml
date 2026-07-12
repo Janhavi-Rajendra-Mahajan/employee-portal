@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    AWS_DEFAULT_REGION: "ap-south-1"
+
 phases:
   install:
     runtime-versions:
@@ -7,15 +11,31 @@ phases:
     commands:
       - echo "Installing HTMLHint..."
       - npm install -g htmlhint
+      - apt-get update
+      - apt-get install -y openssh-client
 
   pre_build:
     commands:
-      - echo "Checking HTML files..."
-      - htmlhint "**/*.html"
+      - echo "Validating HTML..."
+      - htmlhint index.html
 
   build:
     commands:
-      - echo "HTML validation successful."
+      - echo "Creating SSH directory..."
+      - mkdir -p ~/.ssh
+
+      - echo "Downloading SSH private key..."
+      - aws secretsmanager get-secret-value --secret-id employee-ec2-key --query SecretString --output text > ~/.ssh/ec2.pem
+
+      - chmod 400 ~/.ssh/ec2.pem
+
+      - ssh-keyscan -H 13.126.158.209 >> ~/.ssh/known_hosts
+
+      - echo "Copying website to EC2..."
+      - scp -i ~/.ssh/ec2.pem index.html ubuntu@13.126.158.209:/tmp/index.html
+
+      - echo "Deploying website..."
+      - ssh -i ~/.ssh/ec2.pem ubuntu@13.126.158.209 "sudo cp /tmp/index.html /var/www/html/index.html && sudo systemctl reload nginx"
 
 artifacts:
   files:
